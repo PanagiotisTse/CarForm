@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="QA Exercise Suite">
+    <test name="Form Tests">
+        <classes>
+            <class name="TCs.carForm"/>
+        </classes>
+    </test>
+</suite>
