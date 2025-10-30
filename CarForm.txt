@@ -1,0 +1,49 @@
+QA Test Plan – Simple Car Registration Form
+==========================================
+
+Project: Simple Car Registration Form
+Scope: Έλεγχος φόρμας για registration + year + submit
+
+1. Testing Approach
+
+--> Manual HTML review:
+   - Εντοπισμός input fields (registration, year), buttons (submit), alerts
+   - Ελέγχος attributes: id, name, css
+   - Έλεγχος styling των alerts (alert-success / alert-error).
+
+--> Functional Testing:
+   - Submit με έγκυρα δεδομένα → επιβεβαίωση επιτυχίας
+   - Submit με άκυρα ή κενά δεδομένα → σωστά error μηνύματα
+   - Loop σε όλα τα options του dropdown → σωστή λειτουργία κάθε επιλογής
+
+--> Boundary / Edge Cases:
+   - Μέγιστο / ελάχιστο μήκος registration
+   - Special characters, αριθμοί, κενά
+
+--> Automation tools + structure:
+   - Selenium + TestNG + Java
+   - Inputs έχουν σταθερά locators (id/class)
+   - BasePage με reusable methods 
+   - POM 
+   - TCs με description και priority
+   - TestNG xml file to run tests
+
+2. Test Scenarios
+-------------------------
+
+| TC ID | Description                               				| Input                   			| Expected Result                      	|
+|-------|-------------------------------------------				|------------------------			|-------------------------------------	|
+| TC01  | Valid registration + year                  				| ABC1234, random value of options         	| Success message εμφανίζεται          	|
+| TC02  | Empty registration + year                     			| "", ""					| Error messagge      			|
+| TC03  | Empty registration + random year                			| "", random value of options			| Error messagge                 	|
+| TC04  | Valid registration + empty year					| ABC1234, ""     				| Error messagge               		|
+| TC05  | Invalid registration numbers (multiple options) + random year       	| "ABC", "!!@@##", "123", "ada7yf765678"	| Error messagge  			|
+| TC06  | Valid registration + all options for years            		| ABC1234, 2017,2016,2015        		| Success message εμφανίζεται + year    |
+
+3. Notes / Assumptions
+----------------------
+
+- Alerts εμφανίζονται ως div με class alert-success ή alert-danger
+- Dropdown έχει 3 έτη, scalable για περισσότερα
+- BasePage περιλαμβάνει reusable methods
+- Error messages θα επρεπε να είναι πιο ειδικά σχετικά με το τι πήγε λάθος
